@@ -1,0 +1,12 @@
+# This just allows custum threads that can return output? So like a bit cooler thread?
+class ResultThread(threading.Thread):
+    def __init__(self, target, *args, **kwargs):
+        super().__init__()
+        self.target = target
+        self.args = args
+        self.kwargs = kwargs
+        self.result = None
+
+    def run(self):
+        if self.target:
+            self.result = self.target(*self.args, **self.kwargs)

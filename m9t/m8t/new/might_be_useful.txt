@@ -1,0 +1,20 @@
+# This just allows custum threads that can return output? So like a bit cooler thread?
+class ResultThread(threading.Thread):
+    def __init__(self, target, *args, **kwargs):
+        super().__init__()
+        self.target = target
+        self.args = args
+        self.kwargs = kwargs
+        self.result = None
+
+    def run(self):
+        if self.target:
+            self.result = self.target(*self.args, **self.kwargs)
+with open("my_list.json", "w") as file:
+    json.dump(my_list, file)
+
+print("List saved to JSON file.")
+
+# Retrieve list from JSON file
+with open("my_list.json", "r") as file:
+    retrieved_list = json.load(file)
